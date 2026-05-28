@@ -1,16 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DemoAPI.Infrastructure.Provider;
+using Microsoft.AspNetCore.Mvc;
 
-namespace DemoAPI.Controllers
+namespace DemoAPI.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class DemoController(IProviderRestEaseClient providerRestEaseClient) 
+    : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class DemoController : ControllerBase
+    [HttpGet]
+    public async Task<IActionResult> Get()
     {
+        var data = await providerRestEaseClient.GetProviderDataAsync();
 
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok("Hello, World!");
-        }
+        return Ok(data);
     }
 }
