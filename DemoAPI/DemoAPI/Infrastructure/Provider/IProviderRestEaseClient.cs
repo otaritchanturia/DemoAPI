@@ -6,5 +6,5 @@ namespace DemoAPI.Infrastructure.Provider;
 public interface IProviderRestEaseClient
 {
     [Get("api/Provider")]
-    Task<ProductDTO> GetProviderDataAsync();
+    Task<Product> GetProviderDataAsync();
 }
